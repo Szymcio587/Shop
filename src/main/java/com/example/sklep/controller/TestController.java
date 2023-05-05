@@ -21,19 +21,17 @@ public class TestController {
 
     @GetMapping("/")
     public String Test() {
-        gameService.AddGame(new Game(1L, "Grand Theft Auto V", GameType.ACTION, 100, 4.6, " "));
-        gameService.AddGame(new Game(2L, "FIFA 23", GameType.SPORT, 220, 2.0, " "));
-        gameService.AddGame(new Game(3L, "Dark Souls 3", GameType.ACTION, 250, 5.0, " "));
+        Optional<Game> game = gameService.GetGame(1L);
+        if(game.isPresent())
+            return game.get().getName();
 
-        Game game = gameService.GetGame(1L).get();
-        return game.getName();
+        return "No games in database";
     }
 
     @GetMapping("/games")
     public List<Game> sendGames() {
-        //List<Game> games = gameService.GetGame(1L);
-        //return games;
-        return Collections.emptyList();
+        List<Game> games = gameService.GetAllGames();
+        return games;
     }
 
 }
