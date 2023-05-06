@@ -10,8 +10,7 @@ import java.util.Optional;
 
 @Service
 public class GameService {
-
-    @Autowired
+@Autowired
     GameRepository gameRepository;
 
     public Optional<Game> GetGame(Long id) {

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Document
 @Table(name = "Games")
 public class Game {
 
@@ -23,9 +26,14 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Field
     private String name;
+    @Field
     private GameType type;
+    @Field
     private double price;
+    @Field
     private double note;
+    @Field
     private String description;
 }
