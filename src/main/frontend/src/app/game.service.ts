@@ -8,17 +8,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GameService {
 
-  private gameUrl = "http://localhost:8080/games"
+  private gameUrl = "http://localhost:8080/games";
+
+  games: any;
 
   constructor(private http: HttpClient) { }
 
-  getAllData(): Observable<Data[]> {
-    return this.http.get<Data[]>(this.gameUrl);
-  }
-
-  WriteData(): void {
-    this.http.get('http://localhost:8080/games').subscribe((data: any) => {
-      console.log(data);
-    });
+  getAllData(): Observable<any[]> {
+    return this.http.get<any[]>(this.gameUrl);
   }
 }

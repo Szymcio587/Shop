@@ -9,16 +9,18 @@ import { Data } from '@angular/router';
 })
 export class AppComponent implements OnInit{
 
-  games: Data[] = []
+  games: any;
 
   constructor(private gameService: GameService) { }
 
   ngOnInit() {
-    this.gameService.getAllData().subscribe(games => this.games = games)
     this.getData();
   }
 
   getData(): void {
-    this.games.forEach(game => console.log(game));
+    this.gameService.getAllData().subscribe(games => {
+      this.games = games;
+      console.log(this.games);
+    });
   }
 }

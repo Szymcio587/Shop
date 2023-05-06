@@ -2,7 +2,9 @@ package com.example.sklep.mappers;
 
 import com.example.sklep.model.Game;
 import com.example.sklep.model.GameDTO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GameMapper {
 
     public Game ConvertDTOToGame(GameDTO dto) {

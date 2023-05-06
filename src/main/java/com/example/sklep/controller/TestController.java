@@ -1,6 +1,8 @@
 package com.example.sklep.controller;
 
+import com.example.sklep.mappers.GameMapper;
 import com.example.sklep.model.Game;
+import com.example.sklep.model.GameDTO;
 import com.example.sklep.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,18 +19,23 @@ public class TestController {
     @Autowired
     private GameService gameService;
 
+    @Autowired
+    private GameMapper gameMapper;
+
     @GetMapping("/")
     public String Test() {
         Optional<Game> game = gameService.GetGame(1L);
-        if(game.isPresent())
-            return game.get().getName();
+        if(game.isPresent()) {
+            GameDTO dto = gameMapper.ConvertGameToDTO(game.get());
+            return dto.getName();
+        }
 
         return "No games in database";
     }
 
     @GetMapping("/games")
-    public List<Game> sendGames() {
-        return gameService.GetAllGames();
+    public List<GameDTO> sendGames() {
+        return gameService.GetAllGames().stream().map(game -> gameMapper.ConvertGameToDTO(game)).toList();
     }
 
 }
