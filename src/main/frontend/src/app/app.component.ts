@@ -15,5 +15,10 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.gameService.getAllData().subscribe(games => this.games = games)
+    this.getData();
+  }
+
+  getData(): void {
+    this.games.forEach(game => console.log(game));
   }
 }

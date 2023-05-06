@@ -15,8 +15,8 @@ import javax.persistence.Table;
 
 @Component
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Document
 @Table(name = "Games")
